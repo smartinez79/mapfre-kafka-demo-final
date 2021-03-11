@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.events.DemoEvent;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class EventPublisher {
 
 	@Autowired
@@ -17,6 +20,8 @@ public class EventPublisher {
 	private KafkaTopics topics;
 
 	public boolean publishEvent(final DemoEvent event) {
+		log.info("Publishing event {}");
+		
 		return kafkaTemplate.executeInTransaction(t -> {
 			t.send(topics.getEvents().getName(), event.getId(), event);
 			return true;

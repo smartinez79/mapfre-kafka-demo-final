@@ -1,0 +1,15 @@
+{
+	"id": "person-1",
+	"firstName": "Alice",
+	"lastName": "Brown",
+	"address": {
+		"street": "Sesame",
+		"city": "Anywhere",
+		"state": "Happy Valley",
+		"zip": "0000"
+	},
+	"aliases": [
+		"Boss",
+		"Manager"
+	]
+}
