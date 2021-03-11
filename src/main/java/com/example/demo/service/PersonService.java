@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,22 +56,28 @@ public class PersonService {
 	public PersonDto createPerson(PersonDto personDto) {
 		Person model = personMapper.toModel(personDto);
 		Person savedModel = personRepository.save(model);
-		
-		DemoEvent event= new DemoEvent(savedModel, EventType.INSERT, UUID.randomUUID().toString());
+
+		DemoEvent event = new DemoEvent(savedModel, EventType.INSERT);
 		eventPublisher.publishEvent(event);
-		
+
 		return personMapper.toDto(savedModel);
 	}
 
 	public PersonDto updatePerson(PersonDto personDto) {
 		Optional<Person> model = personRepository.findById(personDto.getId());
-		return model.map(p -> {
+
+		Optional<Person> updatedModel = model.map(p -> {
 			p.setFirstName(personDto.getFirstName());
 			p.setLastName(personDto.getLastName());
 			p.setAddress(personDto.getAddress());
 			p.setAliases(personDto.getAliases());
 			return p;
-		}).map(personRepository::save).map(personMapper::toDto).orElse(null);
+		}).map(personRepository::save);
+		
+		DemoEvent event = new DemoEvent(updatedModel.get(), EventType.UPDATE);
+		eventPublisher.publishEvent(event);
+				
+		return updatedModel.map(personMapper::toDto).orElse(null);
 	}
 
 	public boolean deletePersonById(String id) {
@@ -84,6 +89,10 @@ public class PersonService {
 		try {
 			personRepository.deleteById(id);
 			deleted = true;
+			
+			DemoEvent event = new DemoEvent(model.get(), EventType.DELETE);
+			eventPublisher.publishEvent(event);
+			
 		} catch (Exception ex) {
 			deleted = false;
 		}
