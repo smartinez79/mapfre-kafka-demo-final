@@ -78,9 +78,10 @@ public class PersonController {
     }
 
     // Update person
-    @RequestMapping(path = "/people", method = RequestMethod.PUT)
-    public ResponseEntity<?> updatePerson(@RequestBody PersonDto personDto) {
-        PersonDto updatedPerson = personService.updatePerson(personDto);
+    @RequestMapping(path = "/people/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updatePerson(@PathVariable("id") String id,
+                                          @RequestBody PersonDto personDto) {
+        PersonDto updatedPerson = personService.updatePerson(id, personDto);
         return updatedPerson == null ?
                 // 404 Not Found
                 ResponseEntity.notFound().build() :

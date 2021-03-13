@@ -1,0 +1,3 @@
+curl -i -X GET http://localhost:8080/api/people
+curl -i -X POST http://localhost:8080/api/people -H "Content-Type: application/json" -d "{\"firstName\":\"ANTONIO\",\"lastName\":\"GARCIA\",\"address\":{\"street\":\"C/ANCHA, 19\",\"city\":\"ALBACETE\",\"state\":\"ALBACETE\",\"zip\":\"02001\"},\"aliases\":[\"TONO\", \"TONI\"]}"
+curl -i -X PUT http://localhost:8080/api/people/{id} -H "Content-Type: application/json" -d "{\"firstName\":\"ANTONIO\",\"lastName\":\"GARCIA\",\"address\":{\"street\":\"C/ANCHA, 19\",\"city\":\"ALBACETE\",\"state\":\"ALBACETE\",\"zip\":\"02001\"},\"aliases\":[\"TONO\", \"TONI\"]}"
