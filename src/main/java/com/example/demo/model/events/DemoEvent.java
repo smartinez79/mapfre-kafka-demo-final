@@ -6,14 +6,16 @@ import com.example.demo.model.Person;
 
 import lombok.Data;
 
-@Data
 public class DemoEvent {
 	public enum EventType { INSERT, UPDATE, DELETE };
 	
-	private final Person person;
-	private final EventType eventType;
-	private final String id;
-	
+	private Person person;
+	private EventType eventType;
+	private String id;
+
+	public DemoEvent() {
+	}
+
 	public DemoEvent(Person person, EventType type) {
 		this(person, type, UUID.randomUUID().toString());
 	}
@@ -24,4 +26,15 @@ public class DemoEvent {
 		this.id= uuid;
 	}
 
+	public Person getPerson() {
+		return person;
+	}
+
+	public EventType getEventType() {
+		return eventType;
+	}
+
+	public String getId() {
+		return id;
+	}
 }

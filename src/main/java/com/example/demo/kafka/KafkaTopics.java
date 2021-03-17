@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "kafka.topology.demo.topics")
 @ConditionalOnProperty("kafka.bootstrap-servers")
-@Data
 public class KafkaTopics {
 	@Value("${kafka.topology.demo.global-partitions}")
 	private int globalPartitions;
@@ -35,7 +34,14 @@ public class KafkaTopics {
 				.configs(events.getConfigs(globalRetentionMs, globalDeleteRetentionMs));
 	}
 
-	@Data
+	public TopicConfiguration getEvents() {
+		return events;
+	}
+
+	public void setEvents(TopicConfiguration events) {
+		this.events = events;
+	}
+
 	public static class TopicConfiguration {
 		private String name;
 		private int partitions;
@@ -56,6 +62,54 @@ public class KafkaTopics {
 					deleteRetentionMs == 0 ? String.valueOf(globalDeleteRetentionMs)
 							: String.valueOf(deleteRetentionMs));
 			return config;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public int getPartitions() {
+			return partitions;
+		}
+
+		public void setPartitions(int partitions) {
+			this.partitions = partitions;
+		}
+
+		public short getReplication() {
+			return replication;
+		}
+
+		public void setReplication(short replication) {
+			this.replication = replication;
+		}
+
+		public String getCleanupPolicy() {
+			return cleanupPolicy;
+		}
+
+		public void setCleanupPolicy(String cleanupPolicy) {
+			this.cleanupPolicy = cleanupPolicy;
+		}
+
+		public long getRetentionMs() {
+			return retentionMs;
+		}
+
+		public void setRetentionMs(long retentionMs) {
+			this.retentionMs = retentionMs;
+		}
+
+		public long getDeleteRetentionMs() {
+			return deleteRetentionMs;
+		}
+
+		public void setDeleteRetentionMs(long deleteRetentionMs) {
+			this.deleteRetentionMs = deleteRetentionMs;
 		}
 	}
 

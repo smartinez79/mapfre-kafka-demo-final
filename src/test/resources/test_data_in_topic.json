@@ -1,0 +1,18 @@
+{
+  "person": {
+    "id": "person-3",
+    "firstName": "Elaine",
+    "lastName": "Farrell",
+    "address": {
+      "street": "Sesame",
+      "city": "Anywhere",
+      "state": "Happy Valley",
+      "zip": "00004"
+    },
+    "aliases": [
+      "Developer"
+    ]
+  },
+  "eventType": "INSERT",
+  "id": "092ef96d-32c1-45f8-b649-ebe11a665b15"
+}
