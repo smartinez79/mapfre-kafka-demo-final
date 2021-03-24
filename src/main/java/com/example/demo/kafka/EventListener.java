@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.events.DemoEvent;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
 @ConditionalOnProperty("kafka.bootstrap-servers")
 public class EventListener {
