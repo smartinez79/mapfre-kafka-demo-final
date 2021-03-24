@@ -20,7 +20,7 @@ public class EventPublisher {
 	private KafkaTopics topics;
 
 	public boolean publishEvent(final DemoEvent event) {
-		log.info("Publishing event {}");
+		log.info("Publishing event {}", event);
 		
 		return kafkaTemplate.executeInTransaction(t -> {
 			t.send(topics.getEvents().getName(), event.getId(), event);

@@ -1,14 +1,13 @@
 {
-	"firstName": "Alice 13",
-	"lastName": "Brown",
+	"firstName": "Bob",
+	"lastName": "Smith",
 	"address": {
 		"street": "Sesame",
 		"city": "Anywhere",
 		"state": "Happy Valley",
-		"zip": "0000"
+		"zip": "00005"
 	},
 	"aliases": [
-		"Boss",
-		"Manager"
+		"Developer"
 	]
 }

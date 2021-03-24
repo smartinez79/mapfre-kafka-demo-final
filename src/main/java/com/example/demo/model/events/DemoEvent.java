@@ -15,7 +15,6 @@ public class DemoEvent {
 
 	public DemoEvent() {
 	}
-
 	public DemoEvent(Person person, EventType type) {
 		this(person, type, UUID.randomUUID().toString());
 	}
@@ -30,11 +29,32 @@ public class DemoEvent {
 		return person;
 	}
 
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 	public EventType getEventType() {
 		return eventType;
 	}
 
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
+	}
+
 	public String getId() {
 		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "DemoEvent{" +
+				"person=" + person +
+				", eventType=" + eventType +
+				", id='" + id + '\'' +
+				'}';
 	}
 }
