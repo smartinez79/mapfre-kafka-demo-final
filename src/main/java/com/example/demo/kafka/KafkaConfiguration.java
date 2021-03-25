@@ -100,7 +100,7 @@ public class KafkaConfiguration {
 		Map<String,Object> props = new HashMap<>();
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers);
 		addAuthConfigProperties(props);
-		props.put(ConsumerConfig.GROUP_ID_CONFIG, this.consumerId);
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, this.consumerId + "-" + UUID.randomUUID().toString());
 		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 		props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, DemoEvent.class);
