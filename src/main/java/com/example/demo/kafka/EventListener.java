@@ -26,7 +26,7 @@ public class EventListener {
 		events = new ArrayBlockingQueue<DemoEvent>(CAPACITY);
 	}
 
-	@KafkaListener(topics = "demo.course.actions", containerFactory = "demoEventListenerFactory")
+	@KafkaListener(topics = "demo.mapfre.course.actions", containerFactory = "demoEventListenerFactory")
 	public void listenAsObject(@Payload DemoEvent event) {
 
 		log.info("Reading demo event from topic: {}", event);

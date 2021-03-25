@@ -12,11 +12,10 @@ import com.example.demo.model.events.DemoEvent;
 @Service
 public class EventPublisher {
 	private static final Logger log = LoggerFactory.getLogger(EventPublisher.class);
-	
+
 	@Autowired
 	private KafkaTemplate<String, Object> kafkaTemplate;
-
-	@Autowired(required = false)
+	@Autowired
 	private KafkaTopics topics;
 
 	public boolean publishEvent(final DemoEvent event) {
